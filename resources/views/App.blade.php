@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,8 +33,7 @@
 <body>
     <div class="container-fluid">
         <div class="row flex-nowrap">
-            <div class="col-sm-auto"
-                style="background: linear-gradient(to right, #2D3250, #424769);">
+            <div class="col-sm-auto sticky-top" style="background: linear-gradient(to right, #2D3250, #424769);">
                 <x-sidebar></x-sidebar>
             </div>
             <div class="col py-3" style="font-family: 'Quicksand', sans-serif; font-weight: 500;">
@@ -42,6 +42,23 @@
         </div>
     </div>
 </body>
+@if (session('error_akses'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal',
+            text: '{{ session('error_akses') }}',
+        })
+    </script>
+@endif
+@if (session('error_belumlogin'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Gagal',
+            text: 'Anda harus login terlebih dahulu.',
+        })
+    </script>
+@endif
 @yield('scripts')
 </html>
-

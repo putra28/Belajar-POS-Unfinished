@@ -27,6 +27,9 @@ Route::get('/', function () {
 });
 
 Route::post('/proc_login', [LoginController::class, 'proc_Login']);
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/dashboard', [DashboardController::class, 'Index'])->name('Dashboard');
-Route::get('/transaksi', [TransaksiController::class, 'Index'])->name('Transaksi');
+Route::middleware('Role.Check')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'Index'])->name('Dashboard');
+    Route::get('/transaksi', [TransaksiController::class, 'Index'])->name('Transaksi');
+});
